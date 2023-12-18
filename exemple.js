@@ -1,31 +1,31 @@
-function dateSample(sampleActivity) {
-    const MODERN_ACTIVITY = 15;
-    const HALF_LIFE_PERIOD = 5730;
-    if(typeof sampleActivity === 'string'){
-        sampleActivity = Number(sampleActivity)
-        if (isFinite(sampleActivity) && sampleActivity < 9000 && sampleActivity > 0 && sampleActivity != 15.1 ){
-            let k = (0.693 / HALF_LIFE_PERIOD)
-            let a = Math.log(MODERN_ACTIVITY/Number(sampleActivity))
-            let t = a/k
+function createDreamTeam(members) {
+    if(Array.isArray(members)){
 
-            return isFinite(t ) ? Math.ceil(t) :false
-        } else {
-
-            return false
-        }
-
-    }
-    else{
+        let arrStr = members.filter((e) =>  typeof e === 'string')
+        let notTrim = arrStr.map((el) =>el.trim())
+        let arrTrue = notTrim.map((el) => {
+            return el[0].toUpperCase()
+        })
+        return arrTrue.sort().join('');
+    }else {
         return false;
     }
 }
-console.log(dateSample(''))
-console.log(dateSample(false))
-console.log(dateSample(3))
-console.log(dateSample('3'))
-console.log(dateSample(null))
-console.log(dateSample("15.1"))
 
 
-const MODERN_ACTIVITY = 15;
-const HALF_LIFE_PERIOD = 5730;
+console.log(createDreamTeam([
+
+    ['David Abram'],
+    ['Robin Attfield'],
+    'Thomas Berry',
+    ['Paul R.Ehrlich'],
+    'donna Haraway',
+    ' BrIaN_gOodWiN  ',
+    {
+        0: 'Serenella Iovino'
+    },
+    'Erazim Kohak',
+    '  val_plumwood',
+])) /* 'BDETV'*/
+
+// console.log( [ 'William' ,'Alston ' ].sort())
