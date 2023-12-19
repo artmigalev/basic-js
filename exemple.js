@@ -1,17 +1,31 @@
-function getCommonCharacterCount( s1, s2) {
-    let count = 0;
-    let pos = 0;
-    for( let i of s1){
-        if(s2.indexOf(i) !== -1){
-            count+=1;
-            s2 = s2.replace(i,'')
+
+function deleteDigit(n) {
+    let numStr = String(n);
+    let min = 0;
+    for ( let i =0 ; i<numStr.length; i++){
+
+        if( min < Number(numStr.replace(numStr[i],''))){
+            min = Number(numStr.replace(numStr[i],''));
         }
     }
-    return count;
+    return min;
+
 }
 
 
 
-let s1 = "h";
-let s2 = "zzzzzzz";
-console.log(getCommonCharacterCount(s1,s2))
+
+
+
+
+
+
+
+
+
+console.log(deleteDigit(152))/* 52);*/
+console.log(deleteDigit(1001))/* 101);*/
+console.log(deleteDigit(10))/* 1);*/
+console.log(deleteDigit(222219))/* 22229);*/
+console.log(deleteDigit(109))/* 19);*/
+console.log(deleteDigit(342))/* 42);*/
