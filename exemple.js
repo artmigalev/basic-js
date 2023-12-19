@@ -1,31 +1,17 @@
-function createDreamTeam(members) {
-    if(Array.isArray(members)){
-
-        let arrStr = members.filter((e) =>  typeof e === 'string')
-        let notTrim = arrStr.map((el) =>el.trim())
-        let arrTrue = notTrim.map((el) => {
-            return el[0].toUpperCase()
-        })
-        return arrTrue.sort().join('');
-    }else {
-        return false;
+function getCommonCharacterCount( s1, s2) {
+    let count = 0;
+    let pos = 0;
+    for( let i of s1){
+        if(s2.indexOf(i) !== -1){
+            count+=1;
+            s2 = s2.replace(i,'')
+        }
     }
+    return count;
 }
 
 
-console.log(createDreamTeam([
 
-    ['David Abram'],
-    ['Robin Attfield'],
-    'Thomas Berry',
-    ['Paul R.Ehrlich'],
-    'donna Haraway',
-    ' BrIaN_gOodWiN  ',
-    {
-        0: 'Serenella Iovino'
-    },
-    'Erazim Kohak',
-    '  val_plumwood',
-])) /* 'BDETV'*/
-
-// console.log( [ 'William' ,'Alston ' ].sort())
+let s1 = "h";
+let s2 = "zzzzzzz";
+console.log(getCommonCharacterCount(s1,s2))
