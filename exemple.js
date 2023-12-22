@@ -1,31 +1,36 @@
+function encodeLine(str) {
+    let resultStr = '';
+    let char = str[0]
+    let count = 0;
+    for( let i = 0; i<= str.length; i++){
+        if( char === str[i]){
+            count++;
 
-function deleteDigit(n) {
-    let numStr = String(n);
-    let min = 0;
-    for ( let i =0 ; i<numStr.length; i++){
+        }else {
+            if ( count <= 1){
+                resultStr +=char;
+                char = str[i];
+                count =0;
+            }else {
+                resultStr = resultStr + count + char;
+                char = str[i];
+                count =0;
+            }
+            count++
 
-        if( min < Number(numStr.replace(numStr[i],''))){
-            min = Number(numStr.replace(numStr[i],''));
         }
     }
-    return min;
+    return resultStr;
+
+
+
+
+
+    return resultStr;
+
+
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-console.log(deleteDigit(152))/* 52);*/
-console.log(deleteDigit(1001))/* 101);*/
-console.log(deleteDigit(10))/* 1);*/
-console.log(deleteDigit(222219))/* 22229);*/
-console.log(deleteDigit(109))/* 19);*/
-console.log(deleteDigit(342))/* 42);*/
+console.log(encodeLine(''))
