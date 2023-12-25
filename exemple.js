@@ -1,36 +1,12 @@
-function encodeLine(str) {
-    let resultStr = '';
-    let char = str[0]
-    let count = 0;
-    for( let i = 0; i<= str.length; i++){
-        if( char === str[i]){
-            count++;
-
-        }else {
-            if ( count <= 1){
-                resultStr +=char;
-                char = str[i];
-                count =0;
-            }else {
-                resultStr = resultStr + count + char;
-                char = str[i];
-                count =0;
-            }
-            count++
-
-        }
-    }
-    return resultStr;
-
-
-
-
-
-    return resultStr;
-
-
-
+function calculateHanoi(disksNumber, turnsSpeed) {
+    let turns = Math.pow(2,disksNumber);
+    let seconds = Math.ceil(turns/(turnsSpeed / 3600).toFixed(1))
+    let hanoi = new Object;
+    hanoi.turns = turns;
+    hanoi.seconds = seconds;
+    return hanoi;
 }
 
 
-console.log(encodeLine(''))
+
+console.log(calculateHanoi(9, 4308))
