@@ -11,7 +11,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  *
  */
-function getSeason(/*date*/) {
+function getSeason(date) {
 
   const seasons = ['winter', 'spring', 'summer', "autumn"];
   const indSeason = [[11,0,1],[2,3,4],[5,6,7], [8,9,10]];
