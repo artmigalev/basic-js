@@ -1,54 +1,58 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Implement chainMaker object according to task description
  *
  */
 const chainMaker = {
-    length: 0,
-    arr: [],
+  chain: [],
+  length: 0,
 
-    getLength() {
-        return this.length;
-    },
-    addLink(value = '') {
-
-
-
-        if(value === ''){
-            this.length++;
-
-            this.arr.push(`(${''})`);
-            return this;
-        }
-        this.arr.push(`( ${value} )`);
-        this.length++;
-        return this;
-
-    },
-    removeLink(position) {
-        if ( position === 0  || position > this.length || position < 0 || typeof position === 'string' ) {
-            this.arr = []
-            throw 'You can\'t remove incorrect link!';
-        }
-        this.arr.splice(position-1,1);
-        this.length--;
-        return this;
-    },
-    reverseChain() {
-        this.arr = this.arr.reverse()
-        return this;
-    },
-    finishChain() {
-        const result = this.arr.join('~~');
-        this.length = 0;
-        this.arr = [];
-        return result ;
+  getLength() {
+    return this.length;
+  },
+  addLink(value = "") {
+    if(typeof this.chain === 'string') this.chain = []
+    this.length++;
+    console.log(chainMaker);
+    if (value) {
+      this.chain.push(`( ${value} )`);
+      return this;
+    } else {
+      this.chain.push(`( ${value} )`);
+      return this;
     }
+  },
+  removeLink(position) {
+    if (
+      position > this.getLength() ||
+      position <= 0 ||
+      isNaN(position) ||
+      !Number.isInteger(position)
+    ) {
+      throw Error("You can't remove incorrect link!");
+    } else {
+      this.length--;
+      this.chain.splice(position - 1, 1);
+      return this;
+    }
+  },
+  reverseChain() {
+    this.chain.reverse();
+    return this;
+  },
+  finishChain() {
+    const ch = this.chain.join("~~");
+    this.chain = []
+    this.length =0
 
 
+
+    return ch
+  },
 };
 
 module.exports = {
-  chainMaker
+  chainMaker,
 };
+
