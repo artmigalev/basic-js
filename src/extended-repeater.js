@@ -1,3 +1,4 @@
+const { string } = require('yargs');
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
@@ -17,8 +18,8 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function repeater( str, options ) {
-  let resultRepeat = Array(options.additionRepeatTimes).fill(options.addition).join(options.additionSeparator)
-  return Array(options.repeatTimes).fill(str.concat(resultRepeat)).join(options.separator)
+  let resultRepeat = Array(options.additionRepeatTimes).fill(options.addition === null ? String(options.addition): options.addition).join(options.additionSeparator ? options.additionSeparator : '|')
+  return Array(options.repeatTimes).fill(String(str).concat(resultRepeat)).join(options.separator ? options.separator: '+')
 }
 
 
@@ -26,3 +27,6 @@ function repeater( str, options ) {
 module.exports = {
   repeater
 };
+
+
+// console.log(repeater('REPEATABLE_STRING', { repeatTimes: 2, addition: 'ADDITION', additionRepeatTimes: 3 })'REPEATABLE_STRINGADDITION|ADDITION|ADDITION+REPEATABLE_STRINGADDITION|ADDITION|ADDITION');
