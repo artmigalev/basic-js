@@ -1,4 +1,6 @@
+const route = require('color-convert/route.js');
 const { NotImplementedError } = require('../extensions/index.js');
+const { FAILSAFE_SCHEMA } = require('js-yaml');
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -23,11 +25,37 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper( matrix ) {
+  let rows = matrix.length
+  let result =[]
+  function cheking( matrix,row,ind){
+    let totalNumMines =0;
+    // if(matrix[row][ind] === true ) totalNumMines++ ;
+    if(matrix[row][ind-1] === true && ind-1 >= 0) totalNumMines++
+    if(matrix[row] [ind+1] === true && ind+1 < matrix[row].length) totalNumMines++
+    if(row-1 >=  0){
+      if(matrix[row-1][ind] === true)  totalNumMines++
+     if( matrix[row-1][ind-1] === true && ind-1 >= 0) totalNumMines++
+      if(matrix[row-1] [ind+1] === true && ind+1 < matrix[row].length) totalNumMines++
+    }else if(row+1 <  matrix.length){
+      if(matrix[row+1][ind] === true ) totalNumMines++
+      if(matrix[row+1][ind-1] === true && ind-1 >= 0) totalNumMines++
+     if( matrix[row+1] [ind+1] === true && ind+1 < matrix[row].length) totalNumMines++
+    }
+    return totalNumMines;
+  }
+  for(let r = 0; r < rows; r++){
+    const resultMines =[]
+    for(let clm =0; clm < matrix[r].length; clm++){
+
+      resultMines.push(cheking(matrix,r,clm))
+    }
+    result.push(resultMines)
+  }
+  return result;
 }
 
 module.exports = {
   minesweeper
 };
+
